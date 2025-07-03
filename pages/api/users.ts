@@ -22,6 +22,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(200).json(result.rows);
   } catch (err) {
     console.error('Errore API /users:', err);
-    res.status(500).json({ error: 'Errore interno al server', details: err.message || err.toString() });
+  
+    const message =
+      err instanceof Error
+        ? err.message
+        : typeof err === 'string'
+        ? err
+        : JSON.stringify(err);
+  
+    res.status(500).json({ error: 'Errore interno al server', details: message });
   }
 }
