@@ -10,13 +10,16 @@
   },
   "dependencies": {
     "@libsql/client": "^0.15.9",
+    "cors": "^2.8.5",
     "jsonwebtoken": "^9.0.2",
     "next": "15.3.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/cors": "^2.8.19",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20",
     "@types/react": "^19",
