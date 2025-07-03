@@ -6,12 +6,15 @@ import cors, { runMiddleware } from '../../src/lib/cors';
 const SECRET = process.env.JWT_SECRET || 'fallback-secret';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  await runMiddleware(req, res, cors); // ✅ CORS abilitato
+  // ✅ CORS middleware
+  await runMiddleware(req, res, cors);
 
+  // ✅ Risposta preflight OPTIONS
   if (req.method === 'OPTIONS') {
     return res.status(204).end();
   }
 
+  // ✅ Solo POST
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
@@ -41,9 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     return res.status(200).json({ token });
   } catch (err) {
-    const message =
-      err instanceof Error ? err.message : typeof err === 'string' ? err : JSON.stringify(err);
-
+    const message = err instanceof Error ? err.message : String(err);
     return res.status(500).json({ error: 'Errore interno', details: message });
   }
 }

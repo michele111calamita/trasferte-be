@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 // Imposta l'origine frontend (diversa in dev vs prod)
 const allowedOrigin = process.env.NODE_ENV === 'production'
-  ? 'https://quarantapiu.vercel.app'
+  ? 'https://trasferte-be.vercel.app'
   : 'http://localhost:4200';
 
 // Inizializza CORS
